@@ -50,7 +50,7 @@ public class PushBall : MonoBehaviour
                 BounceTrajectory = -BounceTrajectory;
             }
            
-            Vector3 bouncePosition = new Vector3(endPosition.x + BounceTrajectory.x * 0.5f, endPosition.y + BounceTrajectory.y * 0.5f, -1);
+            
             
 
             DirectionalLine.GetComponent<LineRenderer>().enabled = true;
@@ -60,7 +60,7 @@ public class PushBall : MonoBehaviour
 
             DirectionalLine.GetComponent<LineRenderer>().SetPosition(0, startPosition);
             DirectionalLine.GetComponent<LineRenderer>().SetPosition(1, endPosition);
-            DirectionalLine.GetComponent<LineRenderer>().SetPosition(2, bouncePosition);
+            
 
 
             if (hit.collider.tag == "Ball")
@@ -71,11 +71,14 @@ public class PushBall : MonoBehaviour
             }
             else if(hit.collider.tag == "Wall")
 			{
+    
+                BounceTrajectory = Vector2.Reflect(endPosition.normalized,  hit.collider.transform.up);
                 TrajectoryLine.GetComponent<LineRenderer>().enabled = false;
             }
             // Debug.Log($"x - {hit.transform.position.x} y - {hit.transform.position.y} x - {hit.point.x} y - {hit.point.y}");
-            
-           
+            Vector3 bouncePosition = new Vector3(endPosition.x + BounceTrajectory.x * 0.5f, endPosition.y + BounceTrajectory.y * 0.5f, -1);
+            DirectionalLine.GetComponent<LineRenderer>().SetPosition(2, bouncePosition);
+
             HitCircle.transform.position = endPosition;
 
             

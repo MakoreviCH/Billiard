@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,13 +6,20 @@ using UnityEngine;
 public class PushBall : MonoBehaviour
 {
     private Rigidbody2D ball_rb;
+    private GameObject DirectionalLine;
+    private GameObject TrajectoryLine;
+    private GameObject HitCircle;
     // Start is called before the first frame update
     void Start()
     {
         ball_rb = GetComponent<Rigidbody2D>();
+        DirectionalLine = GameObject.FindGameObjectWithTag("DirectionLine");
+        TrajectoryLine = GameObject.FindGameObjectWithTag("TrajectoryLine");
+        HitCircle = GameObject.FindWithTag("Hit");
     }
     Vector2 FingerPosition = new Vector2();
     Vector2 Direction = new Vector2();
+    
     // Update is called once per frame
     void Update()
     {
@@ -26,26 +34,57 @@ public class PushBall : MonoBehaviour
 
             FingerPosition = worldPosition;
             Direction = FingerPosition - new Vector2(transform.position.x, transform.position.y);
+            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, -Direction.normalized);
+
+            Vector2 HitTrajectory = (new Vector2(hit.collider.transform.position.x, hit.collider.transform.position.y) - hit.point).normalized;
+
+            Vector2 BounceTrajectory = Vector2.Perpendicular(HitTrajectory);
+
+            Vector3 startPosition = new Vector3(this.transform.position.x - Direction.normalized.x * 0.5f, this.transform.position.y - Direction.normalized.y * 0.5f, -1);
+            Vector3 endPosition = new Vector3(hit.point.x +Direction.normalized.x*0.15f, hit.point.y+Direction.normalized.y * 0.15f, -1);
+            
+            Vector3 trajectoryPosition = new Vector3(hit.collider.transform.position.x + HitTrajectory.x * 0.5f, hit.collider.transform.position.y + HitTrajectory.y*0.5f, -1);
+
+            if ((-HitTrajectory.x > 0 && -HitTrajectory.y > 0)|| (-HitTrajectory.x < 0 && -HitTrajectory.y < 0))
+            {
+                BounceTrajectory = -BounceTrajectory;
+            }
+           
+            Vector3 bouncePosition = new Vector3(endPosition.x + BounceTrajectory.x * 0.5f, endPosition.y + BounceTrajectory.y * 0.5f, -1);
+            
+
+            DirectionalLine.GetComponent<LineRenderer>().enabled = true;
+            HitCircle.GetComponent<SpriteRenderer>().enabled = true;
 
             
-            RaycastHit2D hit = Physics2D.Raycast(this.transform.position, -Direction);
-            Debug.Log($"x - {FingerPosition.x} y - {FingerPosition.y}");
-            Debug.Log($"x - {hit.transform.position.x} y - {hit.transform.position.y}");
 
-            GameObject.FindGameObjectWithTag("DirectionLine").GetComponent<LineRenderer>().enabled = true;
-                
-            Vector3 startPosition = new Vector3(this.transform.position.x - Direction.normalized.x*0.5f, this.transform.position.y-Direction.normalized.y*0.5f, -1);
-
-            GameObject.FindGameObjectWithTag("DirectionLine").GetComponent<LineRenderer>().SetPosition(0, startPosition);
-            GameObject.FindGameObjectWithTag("DirectionLine").GetComponent<LineRenderer>().SetPosition(1, new Vector3( hit.point.x,hit.point.y,-1));
+            DirectionalLine.GetComponent<LineRenderer>().SetPosition(0, startPosition);
+            DirectionalLine.GetComponent<LineRenderer>().SetPosition(1, endPosition);
+            DirectionalLine.GetComponent<LineRenderer>().SetPosition(2, bouncePosition);
 
 
+            if (hit.collider.tag == "Ball")
+			{
+                TrajectoryLine.GetComponent<LineRenderer>().enabled = true;
+                TrajectoryLine.GetComponent<LineRenderer>().SetPosition(0, new Vector3(hit.point.x, hit.point.y, -1));
+                TrajectoryLine.GetComponent<LineRenderer>().SetPosition(1, trajectoryPosition);
+            }
+            else if(hit.collider.tag == "Wall")
+			{
+                TrajectoryLine.GetComponent<LineRenderer>().enabled = false;
+            }
+            // Debug.Log($"x - {hit.transform.position.x} y - {hit.transform.position.y} x - {hit.point.x} y - {hit.point.y}");
+            
+           
+            HitCircle.transform.position = endPosition;
 
+            
         }
         if (Input.GetMouseButtonUp(0))
 		{
-            GameObject.FindGameObjectWithTag("DirectionLine").GetComponent<LineRenderer>().enabled = false;
-
+            DirectionalLine.GetComponent<LineRenderer>().enabled = false;
+            HitCircle.GetComponent<SpriteRenderer>().enabled = false;
+            TrajectoryLine.GetComponent<LineRenderer>().enabled = false;
 
             GetComponent<Rigidbody2D>().AddForce(-Direction*1.3f, ForceMode2D.Impulse);
             Debug.Log("end");

@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Ball
   - TrajectoryLine
+  - Pocket
   layers:
   - Default
   - TransparentFX

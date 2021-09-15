@@ -61,12 +61,17 @@ public class PushBall : MonoBehaviour
                 TrajectoryLine.GetComponent<LineRenderer>().SetPosition(0, new Vector3(hit.point.x, hit.point.y, -1));
                 TrajectoryLine.GetComponent<LineRenderer>().SetPosition(1, trajectoryPosition);
             }
-            else if(hit.collider.tag == "Wall")
+            else if (hit.collider.tag != "Ball")
 			{
                 TrajectoryLine.GetComponent<LineRenderer>().enabled = false;
+            }
+            else if(hit.collider.tag == "Wall")
+			{
+                
                 BounceTrajectory = Vector2.Reflect(endPosition.normalized,  hit.collider.transform.up);
                 
             }
+                        
             // Debug.Log($"x - {hit.transform.position.x} y - {hit.transform.position.y} x - {hit.point.x} y - {hit.point.y}");
             Vector3 bouncePosition = new Vector3(endPosition.x + BounceTrajectory.x * 0.5f, endPosition.y + BounceTrajectory.y * 0.5f, -1);
             DirectionalLine.GetComponent<LineRenderer>().SetPosition(2, bouncePosition);

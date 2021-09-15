@@ -17,11 +17,12 @@ public class CircleState : MonoBehaviour
 			}
 			else
 			{
-				GameObject.Destroy(this.gameObject);
-				if (GameObject.FindGameObjectsWithTag("Ball").Length == 0)
+				
+				if (GameObject.FindGameObjectsWithTag("Ball").Length == 1)
 				{
 					SceneManager.LoadScene(0);
 				}
+				GameObject.Destroy(this.gameObject);
 			}
 			
 		}

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5123384579556424712}
   - component: {fileID: 5123384579556424713}
   - component: {fileID: -278494594681008092}
-  - component: {fileID: 92437378333233892}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Ball
@@ -135,30 +134,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6b0cfd713edf749bfdaf4e01e060d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &92437378333233892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5123384579556424719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc8b60fba6701a488166c857e3fa620, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colors:
-  - {fileID: 21300000, guid: c7ee2d9ff1221b04091300fe24333b42, type: 3}
-  - {fileID: 21300000, guid: d866949dd3b794644ba281a1784fc08b, type: 3}
-  - {fileID: 21300000, guid: 683539d695dbfe04399522bed57654ec, type: 3}
-  - {fileID: 21300000, guid: 175ce5a6aea33564ba42366bbe2e15fc, type: 3}
-  - {fileID: 21300000, guid: d1655946369c809428915085d7a8d20a, type: 3}
-  - {fileID: 21300000, guid: b5bbe970bccda504d9636357f98a245b, type: 3}
-  - {fileID: 21300000, guid: f5c2e8182c7f7ee4bbf7ffda19111d0d, type: 3}
-  - {fileID: 21300000, guid: 544ca5c936c851e408fa954789ca51a2, type: 3}
-  - {fileID: 21300000, guid: bb4d43685747e63469fdd09be6521bdb, type: 3}
-  - {fileID: 21300000, guid: 6ba422b0d5fa6924a9dc3c5b049858b9, type: 3}
-  - {fileID: 21300000, guid: ea638c17c1fba1c439c2fcddfdca8fa3, type: 3}
-  - {fileID: 21300000, guid: 67afaf1dca546894ca8aeae10c267e92, type: 3}
-  - {fileID: 21300000, guid: b5da5fc51a325804a91cc4474f28ce31, type: 3}
-  - {fileID: 21300000, guid: 3bf7318f33be6dd40b62731e8d9f28e6, type: 3}

@@ -29,22 +29,22 @@ public class PushBall : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
 		{
-            ClearLine();
+            Push();
         }
 
     }
 
-	private void ClearLine()
+	private void Push()
 	{
         DirectionalLine.GetComponent<LineRenderer>().enabled = false;
         HitCircle.GetComponent<SpriteRenderer>().enabled = false;
         TrajectoryLine.GetComponent<LineRenderer>().enabled = false;
 
-        GetComponent<Rigidbody2D>().AddForce(-Direction * 1.3f, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(-Direction * 2.5f, ForceMode2D.Impulse);
         Debug.Log("end");
     }
 
-	private void SetLine()
+	void SetLine()
 	{
         Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);

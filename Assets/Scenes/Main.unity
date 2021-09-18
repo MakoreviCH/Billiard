@@ -2166,12 +2166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b76e70b6cbf64f44bdfceb031b1b920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
+  Colors:
   - {fileID: 21300000, guid: c7ee2d9ff1221b04091300fe24333b42, type: 3}
   - {fileID: 21300000, guid: d866949dd3b794644ba281a1784fc08b, type: 3}
   - {fileID: 21300000, guid: 683539d695dbfe04399522bed57654ec, type: 3}
   - {fileID: 21300000, guid: 175ce5a6aea33564ba42366bbe2e15fc, type: 3}
   - {fileID: 21300000, guid: d1655946369c809428915085d7a8d20a, type: 3}
+  - {fileID: 21300000, guid: b5bbe970bccda504d9636357f98a245b, type: 3}
   - {fileID: 21300000, guid: f5c2e8182c7f7ee4bbf7ffda19111d0d, type: 3}
   - {fileID: 21300000, guid: de072aa1b46d9094f94598ac568bb1cc, type: 3}
   - {fileID: 21300000, guid: 544ca5c936c851e408fa954789ca51a2, type: 3}
@@ -2181,7 +2182,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67afaf1dca546894ca8aeae10c267e92, type: 3}
   - {fileID: 21300000, guid: b5da5fc51a325804a91cc4474f28ce31, type: 3}
   - {fileID: 21300000, guid: 3bf7318f33be6dd40b62731e8d9f28e6, type: 3}
-  - {fileID: 21300000, guid: b5bbe970bccda504d9636357f98a245b, type: 3}
   Field: {fileID: 1558046776}
 --- !u!4 &1102208785 stripped
 Transform:
